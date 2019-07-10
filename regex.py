@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys, os
 import argparse
 import re
 
@@ -23,13 +23,13 @@ def RegEx(s, q):
     formattedText += s[lastMatch:]
 
     if(count == 0):
-    	formattedText = notFoundCol + 'Not Found' + resetCol
+        formattedText = notFoundCol + 'Not Found' + resetCol
 
     return formattedText
 
 
 def main():
-	# create argument
+    # create argument
     ap = argparse.ArgumentParser(description='Simple RegEx')
     ap.add_argument('infile', type=argparse.FileType('r'), default=sys.stdin, help='Input file text')
     ap.add_argument('-p', '--pattern', required=True, help='Regular Expression pattern')
@@ -40,4 +40,7 @@ def main():
 
 
 if __name__ == '__main__':
+    if os.name != 'posix':
+        print('OS tidak support')
+        sys.exit(1)
     main()
