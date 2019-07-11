@@ -102,7 +102,7 @@ def main():
     text = args.infile.read()
     clean_text, token, rem_stopword, stems, lemmas = preprocessing(text)
     print(BLUE+'Source:'+RST+'\n', text, '\n')
-    print(BLUE+'Clean Text:'+RST+'\n', text, '\n')
+    print(BLUE+'Clean Text:'+RST+'\n', clean_text, '\n')
     print(BLUE+'Tokenization:'+RST+'\n', token, '\n')
     print(BLUE+'Stopword removed:'+RST+'\n', rem_stopword, '\n')
     print(BLUE+'Stemmed:'+RST+'\n', stems, '\n')
