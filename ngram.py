@@ -13,6 +13,7 @@ def main():
     ap.add_argument('infile', type=argparse.FileType('r'), default=sys.stdin, help='Input file text')
     ap.add_argument('--unigram', action='store_true', help='mode unigram')
     ap.add_argument('--bigram', action='store_true', help='mode bigram')
+    ap.add_argument('--trigram', action='store_true', help='mode trigram')
     ap.add_argument('-n', '--ngram', type=int, help="mode n-gram")
     args = ap.parse_args()
 
@@ -28,11 +29,18 @@ def main():
     if args.bigram:
     	result = list(bigrams(unigram))
     	label = 'Bigram'
+    if args.trigram:
+    	result = list(trigrams(unigram))
+    	label = 'Trigram'
     if args.ngram:
     	result = list(ngrams(unigram, args.ngram))
     	label = 'N-Gram -> '+str(args.ngram)
 
-    print(BLUE+label+':'+RST+'\n', result)
+    try:
+    	print(BLUE+label+':'+RST+'\n', result)
+    except UnboundLocalError:
+    	print(ERR+'Error'+RST)
+    	sys.exit(1)
 
 
 if __name__ == '__main__':
