@@ -46,7 +46,7 @@ def print_med(s, t, dist):
 
 
 def main():
-    # # create argument
+    # create argument
     ap = argparse.ArgumentParser(description='Minimum Edit Distance')
     ap.add_argument('string1', help='String 1')
     ap.add_argument('string2', help='String 2')
