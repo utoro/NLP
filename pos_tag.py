@@ -10,7 +10,7 @@ BT = '\033[38;5;27m'
 RST = '\033[0m'
 
 def colored(a):
-    res = list(BT+str(i) for i in a)
+    res = list(BT+str(i)+RST for i in a)
     return res
 
 def pos_tagger(text):
@@ -47,8 +47,8 @@ def main():
     text = args.infile.read()
     clean_text, tag, univ_tag = pos_tagger(text)
 
-    print(BLUE+'Source:\n'+RST, text, '\n')
-    print(BLUE+'Clean:\n'+RST, clean_text, '\n')
+    print('{}Source:{}\n{}'.format(BLUE, RST, text))
+    print('{}Clean:{}\n{}'.format(BLUE, RST, clean_text))
     table = BeautifulTable()
     table.column_headers = colored(["No", "Word", "POS Tag", "Universal Tag", "Info"])
     for i in range(len(tag)):

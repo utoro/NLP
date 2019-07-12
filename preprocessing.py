@@ -101,12 +101,12 @@ def main():
     
     text = args.infile.read()
     clean_text, token, rem_stopword, stems, lemmas = preprocessing(text)
-    print(BLUE+'Source:'+RST+'\n', text, '\n')
-    print(BLUE+'Clean Text:'+RST+'\n', clean_text, '\n')
-    print(BLUE+'Tokenization:'+RST+'\n', token, '\n')
-    print(BLUE+'Stopword removed:'+RST+'\n', rem_stopword, '\n')
-    print(BLUE+'Stemmed:'+RST+'\n', stems, '\n')
-    print(BLUE+'\nLemmatized:'+RST+'\n', lemmas, '\n')
+    print('{}Source:{}\n{}\n'.format(BLUE, RST, text))
+    print('{}Clean Text:{}\n{}\n'.format(BLUE, RST, clean_text))
+    print('{}Tokenization:{}\n{}\n'.format(BLUE, RST, token))
+    print('{}Stopword removed:{}\n{}\n'.format(BLUE, RST,rem_stopword))
+    print('{}Stemmed:{}\n{}\n'.format(BLUE, RST, stems))
+    print('{}Lemmatized:{}\n{}\n'.format(BLUE, RST, lemmas))
 
 if __name__ == '__main__':
     main()

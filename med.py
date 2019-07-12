@@ -58,7 +58,7 @@ def main():
     costs = args.costs if args.costs is not None else [1,1,2]
     med_res, row, col  = med(string1, string2, costs)
 
-    print('\nCosts (del ins sub): {}\n'.format(costs))
+    print('Costs (del ins sub): {}\n'.format(costs))
     print_med(string1, string2, med_res)
     print('\nLevenshtein Distance: {}'.format(med_res[row][col]))
 
