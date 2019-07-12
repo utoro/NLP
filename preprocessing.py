@@ -2,7 +2,7 @@
 '''
 source: https://www.kdnuggets.com/2018/03/text-data-preprocessing-walkthrough-python.html
 '''
-import sys, argparse
+import os, sys, argparse
 import re, string, unicodedata
 import nltk, contractions, inflect
 from bs4 import BeautifulSoup
@@ -109,4 +109,7 @@ def main():
     print('{}Lemmatized:{}\n{}\n'.format(BLUE, RST, lemmas))
 
 if __name__ == '__main__':
+    if os.name != 'posix':
+        print('OS tidak support')
+        sys.exit(1)
     main()

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, argparse
+import os, sys, argparse
 from nltk import bigrams, trigrams, ngrams,word_tokenize
 from preprocessing import denoise_text, replace_contractions
 
@@ -8,7 +8,7 @@ ERR = '\033[230;48;5;1m'
 RST = '\033[0m'
 
 def main():
-	# # create argument
+    # # create argument
     ap = argparse.ArgumentParser(description='Unigram Bigram N-Gram')
     ap.add_argument('infile', type=argparse.FileType('r'), default=sys.stdin, help='Input file text')
     ap.add_argument('--unigram', action='store_true', help='mode unigram')
@@ -39,4 +39,7 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+    if os.name != 'posix':
+        print('OS tidak support')
+        sys.exit(1)
+    main()

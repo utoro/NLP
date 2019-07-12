@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import argparse
+import os, argparse
 from beautifultable import BeautifulTable
 
 BLUE = '\033[38;5;27m'
@@ -63,4 +63,7 @@ def main():
     print('\nLevenshtein Distance: {}'.format(med_res[row][col]))
 
 if __name__ == '__main__':
+    if os.name != 'posix':
+        print('OS tidak support')
+        sys.exit(1)
     main()

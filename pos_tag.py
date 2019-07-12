@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, argparse
+import os, sys, argparse
 import nltk
 from nltk import word_tokenize, sent_tokenize
 from preprocessing import denoise_text, replace_contractions
@@ -57,4 +57,7 @@ def main():
     print(table)
 
 if __name__ == '__main__':
+    if os.name != 'posix':
+        print('OS tidak support')
+        sys.exit(1)
     main()
