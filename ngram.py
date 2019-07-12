@@ -15,32 +15,27 @@ def main():
     ap.add_argument('--bigram', action='store_true', help='mode bigram')
     ap.add_argument('--trigram', action='store_true', help='mode trigram')
     ap.add_argument('-n', '--ngram', type=int, help="mode n-gram")
-    args = ap.parse_args()
+    args = vars(ap.parse_args())
 
-    text = args.infile.read()
-    result = ''
-
+    text = args['infile'].read()
     denoise = denoise_text(text)
     clean_text = replace_contractions(denoise)
     unigram = word_tokenize(clean_text)
-    if args.unigram:
-    	result = unigram
-    	label = 'Unigram'
-    if args.bigram:
-    	result = list(bigrams(unigram))
-    	label = 'Bigram'
-    if args.trigram:
-    	result = list(trigrams(unigram))
-    	label = 'Trigram'
-    if args.ngram:
-    	result = list(ngrams(unigram, args.ngram))
-    	label = 'N-Gram -> '+str(args.ngram)
 
-    try:
-    	print(BLUE+label+':'+RST+'\n', result)
-    except UnboundLocalError:
-    	print(ERR+'Error'+RST)
-    	sys.exit(1)
+    opr = {'unigram': [unigram, 'Unigram'], 'bigram': [bigrams, 'Bigram'], 
+         'trigram': [trigrams, 'Trigram'], 'ngram': [ngrams, 'N-Gram -> {}'.format(args['ngram'])]}
+
+    c = 0
+    for i in opr.keys():
+        if args[i]:
+            result = unigram if i == 'unigram' else list(opr[i][0](unigram, args['ngram'])) \
+                  if i == 'ngram' else list(opr[i][0](unigram))
+            print('{}{}:{}\n{}\n'.format(BLUE, opr[i][1],RST, result))
+            c += 1
+
+    if c == 0:
+        ap.print_usage()
+        sys.exit(1)
 
 
 if __name__ == '__main__':
