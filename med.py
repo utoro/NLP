@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, argparse
+import os, sys, argparse
 from beautifultable import BeautifulTable
 
 BLUE = '\033[38;5;27m'
